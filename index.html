@@ -5,346 +5,327 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Feliz Aniversário, Gui! 🎂💕</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
 
-        body {
-            font-family: 'Poppins', sans-serif;
-            overflow-x: hidden;
-            min-height: 100vh;
-            position: relative;
-        }
+    body {
+        font-family: 'Poppins', sans-serif;
+        overflow-x: hidden;
+        min-height: 100vh;
+        position: relative;
+    }
 
-        /* Slideshow de fundo */
-        .slideshow {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-        }
+    /* Slideshow de fundo */
+    .slideshow {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+    }
 
-        .slideshow::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(255, 240, 245, 0.7);
-            z-index: 1;
-        }
+    .slideshow::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        /* Rosa bem suave pra mostrar o fundo */
+        background: rgba(255, 240, 245, 0.25);
+        z-index: 1;
+    }
 
-        .slide {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+    .slide {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0;
+        transition: opacity 1s ease-in-out; /* mais rápido */
+        background-size: cover;
+        background-position: center;
+    }
+
+    .slide.active {
+        opacity: 1;
+    }
+
+    .slide:nth-child(1) {
+        background-image: url('imagem1.jpeg');
+    }
+
+    .slide:nth-child(2) {
+        background-image: url('imagem2.jpeg');
+    }
+
+    .slide:nth-child(3) {
+        background-image: url('imagem3.jpeg');
+    }
+
+    .slide:nth-child(4) {
+        background-image: url('imagem4.jpeg');
+    }
+
+    .slide:nth-child(5) {
+        background-image: url('imagem5.jpeg');
+    }
+
+    .slide:nth-child(6) {
+        background-image: url('imagem6.jpeg');
+    }
+
+    /* Container principal */
+    .container {
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+        position: relative;
+        z-index: 2;
+    }
+
+    /* Seções */
+    .secao {
+        display: none;
+        animation: fadeIn 0.8s ease;
+    }
+
+    .secao.ativa {
+        display: block;
+    }
+
+    @keyframes fadeIn {
+        from {
             opacity: 0;
-            transition: opacity 2s ease-in-out;
-            background-size: cover;
-            background-position: center;
+            transform: translateY(20px);
         }
-
-        .slide.active {
+        to {
             opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    /* Estilo unificado para carta, jogo e final — mais transparente */
+    .carta,
+    .game-section,
+    .mensagem-final {
+        background: rgba(255, 255, 255, 0.70); /* transparência suave */
+        border-radius: 20px;
+        padding: 40px;
+        max-width: 800px;
+        width: 100%;
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+        backdrop-filter: blur(12px); /* efeito vidro */
+        border: 2px solid rgba(255, 192, 203, 0.3);
+    }
+
+    .carta h1 {
+        color: #ff6b9d;
+        text-align: center;
+        margin-bottom: 25px;
+        font-size: 2.2em;
+    }
+
+    .carta-texto {
+        color: #555;
+        line-height: 1.8;
+        font-size: 1.1em;
+        margin-bottom: 30px;
+        white-space: pre-line;
+    }
+
+    .botao-principal {
+        display: block;
+        margin: 0 auto;
+        background: linear-gradient(135deg, #ff6b9d, #ff8fab);
+        color: white;
+        border: none;
+        padding: 15px 40px;
+        border-radius: 30px;
+        font-size: 1.1em;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        font-family: 'Poppins', sans-serif;
+        font-weight: 600;
+        box-shadow: 0 5px 15px rgba(255, 107, 157, 0.3);
+    }
+
+    .botao-principal:hover {
+        transform: scale(1.05);
+        box-shadow: 0 8px 20px rgba(255, 107, 157, 0.5);
+    }
+
+    /* Seção dos corações */
+    .game-title {
+        text-align: center;
+        color: #ff6b9d;
+        margin-bottom: 30px;
+        font-size: 1.8em;
+    }
+
+    .hearts-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+        gap: 20px;
+        margin: 30px 0;
+        justify-items: center;
+    }
+
+    .heart {
+        font-size: 3em;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        filter: drop-shadow(0 4px 6px rgba(255, 107, 157, 0.3));
+        user-select: none;
+    }
+
+    .heart:hover:not(.clicked)) {
+        transform: scale(1.2) rotate(10deg);
+        filter: drop-shadow(0 6px 12px rgba(255, 107, 157, 0.5));
+    }
+
+    .heart.clicked {
+        opacity: 0.3;
+        cursor: not-allowed;
+        transform: scale(0.8);
+    }
+
+    /* Modal */
+    .frase-modal {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) scale(0);
+        background: white;
+        padding: 40px;
+        border-radius: 20px;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        max-width: 500px;
+        width: 90%;
+        z-index: 1000;
+        opacity: 0;
+        transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        text-align: center;
+    }
+
+    .frase-modal.show {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 1;
+    }
+
+    .frase-texto {
+        color: #333;
+        font-size: 1.3em;
+        line-height: 1.6;
+        margin-bottom: 20px;
+    }
+
+    .frase-modal button {
+        background: linear-gradient(135deg, #ff6b9d, #ff8fab);
+        color: white;
+        border: none;
+        padding: 12px 30px;
+        border-radius: 25px;
+        font-size: 1em;
+        cursor: pointer;
+        transition: 0.3s ease;
+        font-family: 'Poppins', sans-serif;
+    }
+
+    .frase-modal button:hover {
+        transform: scale(1.05);
+        box-shadow: 0 5px 15px rgba(255, 107, 157, 0.4);
+    }
+
+    .overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.5);
+        z-index: 999;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.3s ease;
+    }
+
+    .overlay.show {
+        opacity: 1;
+        pointer-events: all;
+    }
+
+    /* Mensagem final */
+    .mensagem-final h2 {
+        color: #ff6b9d;
+        font-size: 2em;
+        margin-bottom: 25px;
+    }
+
+    .mensagem-final p {
+        color: #555;
+        line-height: 1.8;
+        font-size: 1.1em;
+        white-space: pre-line;
+    }
+
+    /* Confettis */
+    .confetti {
+        position: fixed;
+        width: 10px;
+        height: 10px;
+        background: #ff6b9d;
+        position: absolute;
+        animation: confetti-fall 3s linear;
+    }
+
+    @keyframes confetti-fall {
+        to {
+            transform: translateY(100vh) rotate(360deg);
+            opacity: 0;
+        }
+    }
+
+    /* Responsivo */
+    @media (max-width: 768px) {
+        .carta, .game-section, .mensagem-final {
+            padding: 25px;
         }
 
-        .slide:nth-child(1) {
-            background-image: url('imagem1.jpeg');
+        .carta h1, .game-title, .mensagem-final h2 {
+            font-size: 1.5em;
         }
 
-        .slide:nth-child(2) {
-            background-image: url('imagem2.jpeg');
-        }
-
-        .slide:nth-child(3) {
-            background-image: url('imagem3.jpeg');
-        }
-
-        .slide:nth-child(4) {
-            background-image: url('imagem4.jpeg');
-        }
-
-        .slide:nth-child(5) {
-            background-image: url('imagem5.jpeg');
-        }
-
-        .slide:nth-child(6) {
-            background-image: url('imagem6.jpeg');
-        }
-
-        /* Container principal */
-        .container {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
-            position: relative;
-            z-index: 2;
-        }
-
-        /* Seções */
-        .secao {
-            display: none;
-            animation: fadeIn 0.8s ease;
-        }
-
-        .secao.ativa {
-            display: block;
-        }
-
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        /* Cartinha */
-        .carta {
-            background: rgba(255, 255, 255, 0.95);
-            border-radius: 20px;
-            padding: 40px;
-            max-width: 700px;
-            width: 100%;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
-            backdrop-filter: blur(10px);
-            border: 2px solid rgba(255, 192, 203, 0.3);
-        }
-
-        .carta h1 {
-            color: #ff6b9d;
-            text-align: center;
-            margin-bottom: 25px;
-            font-size: 2.2em;
-        }
-
-        .carta-texto {
-            color: #555;
-            line-height: 1.8;
-            font-size: 1.1em;
-            margin-bottom: 30px;
-            white-space: pre-line;
-        }
-
-        .botao-principal {
-            display: block;
-            margin: 0 auto;
-            background: linear-gradient(135deg, #ff6b9d, #ff8fab);
-            color: white;
-            border: none;
-            padding: 15px 40px;
-            border-radius: 30px;
-            font-size: 1.1em;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-family: 'Poppins', sans-serif;
-            font-weight: 600;
-            box-shadow: 0 5px 15px rgba(255, 107, 157, 0.3);
-        }
-
-        .botao-principal:hover {
-            transform: scale(1.05);
-            box-shadow: 0 8px 20px rgba(255, 107, 157, 0.5);
-        }
-
-        /* Seção dos corações */
-        .game-section {
-            background: rgba(255, 255, 255, 0.95);
-            border-radius: 20px;
-            padding: 40px;
-            max-width: 800px;
-            width: 100%;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
-            backdrop-filter: blur(10px);
-            border: 2px solid rgba(255, 192, 203, 0.3);
-        }
-
-        .game-title {
-            text-align: center;
-            color: #ff6b9d;
-            margin-bottom: 30px;
-            font-size: 1.8em;
+        .carta-texto, .mensagem-final p {
+            font-size: 1em;
         }
 
         .hearts-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
-            gap: 20px;
-            margin: 30px 0;
-            justify-items: center;
+            grid-template-columns: repeat(auto-fit, minmax(60px, 1fr));
+            gap: 15px;
         }
 
         .heart {
-            font-size: 3em;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            filter: drop-shadow(0 4px 6px rgba(255, 107, 157, 0.3));
-            user-select: none;
+            font-size: 2.5em;
         }
 
-        .heart:hover:not(.clicked) {
-            transform: scale(1.2) rotate(10deg);
-            filter: drop-shadow(0 6px 12px rgba(255, 107, 157, 0.5));
-        }
-
-        .heart.clicked {
-            opacity: 0.3;
-            cursor: not-allowed;
-            transform: scale(0.8);
-        }
-
-        /* Modal de frase */
         .frase-modal {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%) scale(0);
-            background: white;
-            padding: 40px;
-            border-radius: 20px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-            max-width: 500px;
-            width: 90%;
-            z-index: 1000;
-            opacity: 0;
-            transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-            text-align: center;
-        }
-
-        .frase-modal.show {
-            transform: translate(-50%, -50%) scale(1);
-            opacity: 1;
+            padding: 30px 20px;
         }
 
         .frase-texto {
-            color: #333;
-            font-size: 1.3em;
-            line-height: 1.6;
-            margin-bottom: 20px;
-        }
-
-        .frase-modal button {
-            background: linear-gradient(135deg, #ff6b9d, #ff8fab);
-            color: white;
-            border: none;
-            padding: 12px 30px;
-            border-radius: 25px;
-            font-size: 1em;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-family: 'Poppins', sans-serif;
-        }
-
-        .frase-modal button:hover {
-            transform: scale(1.05);
-            box-shadow: 0 5px 15px rgba(255, 107, 157, 0.4);
-        }
-
-        .overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.5);
-            z-index: 999;
-            opacity: 0;
-            pointer-events: none;
-            transition: opacity 0.3s ease;
-        }
-
-        .overlay.show {
-            opacity: 1;
-            pointer-events: all;
-        }
-
-        /* Mensagem final */
-        .mensagem-final {
-            background: rgba(255, 255, 255, 0.95);
-            border-radius: 20px;
-            padding: 40px;
-            max-width: 700px;
-            width: 100%;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
-            backdrop-filter: blur(10px);
-            border: 2px solid rgba(255, 192, 203, 0.3);
-            text-align: center;
-        }
-
-        .mensagem-final h2 {
-            color: #ff6b9d;
-            font-size: 2em;
-            margin-bottom: 25px;
-        }
-
-        .mensagem-final p {
-            color: #555;
-            line-height: 1.8;
             font-size: 1.1em;
-            white-space: pre-line;
         }
-
-        .confetti {
-            position: fixed;
-            width: 10px;
-            height: 10px;
-            background: #ff6b9d;
-            position: absolute;
-            animation: confetti-fall 3s linear;
-        }
-
-        @keyframes confetti-fall {
-            to {
-                transform: translateY(100vh) rotate(360deg);
-                opacity: 0;
-            }
-        }
-
-        /* Responsivo */
-        @media (max-width: 768px) {
-            .carta, .game-section, .mensagem-final {
-                padding: 25px;
-            }
-
-            .carta h1, .game-title, .mensagem-final h2 {
-                font-size: 1.5em;
-            }
-
-            .carta-texto, .mensagem-final p {
-                font-size: 1em;
-            }
-
-            .hearts-container {
-                grid-template-columns: repeat(auto-fit, minmax(60px, 1fr));
-                gap: 15px;
-            }
-
-            .heart {
-                font-size: 2.5em;
-            }
-
-            .frase-modal {
-                padding: 30px 20px;
-            }
-
-            .frase-texto {
-                font-size: 1.1em;
-            }
-        }
-    </style>
+    }
+</style>
 </head>
 <body>
     <!-- Slideshow de fundo -->
