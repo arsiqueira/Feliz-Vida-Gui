@@ -37,7 +37,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(255, 240, 245, 0.20); /* mais suave */
+            background: rgba(255, 240, 245, 0.20);
             z-index: 1;
         }
 
@@ -94,12 +94,12 @@
         .carta,
         .game-section,
         .mensagem-final {
-            background: rgba(255, 255, 255, 0.25); /* transparência escolhida */
+            background: rgba(255, 255, 255, 0.25);
             border-radius: 20px;
             padding: 40px;
             max-width: 800px;
             width: 100%;
-            backdrop-filter: blur(5px); /* vidro mais leve */
+            backdrop-filter: blur(5px);
             border: 2px solid rgba(255, 192, 203, 0.25);
             box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
         }
@@ -111,8 +111,9 @@
             font-size: 2.2em;
         }
 
+        /* NOVA COR DO TEXTO (ROSA COMBINANDO) */
         .carta-texto {
-            color: #444;
+            color: #ff6b9d;
             line-height: 1.8;
             font-size: 1.1em;
             margin-bottom: 30px;
@@ -186,6 +187,8 @@
             transition: 0.3s ease;
             z-index: 1000;
             text-align: center;
+            color: #ff6b9d;
+            font-weight: 600;
         }
 
         .frase-modal.show {
@@ -219,9 +222,10 @@
         }
 
         .mensagem-final p {
-            color: #444;
+            color: #ff6b9d;
             line-height: 1.8;
             font-size: 1.1em;
+            white-space: pre-line;
         }
 
         /* Confetti */
@@ -261,6 +265,7 @@
         <div class="secao ativa" id="secaoCarta">
             <div class="carta">
                 <h1>Feliz Aniversário, meu bem! 🎂💕</h1>
+
                 <div class="carta-texto" id="textoCarta">
 Vida…
 Chegou o seu dia, e eu não podia deixar passar um segundo a mais sem te lembrar do quanto você é especial pra mim.
@@ -286,8 +291,8 @@ Hoje eu só quero te celebrar — porque você merece tudo de bom, tudo de mais 
         <div class="secao" id="secaoFinal">
             <div class="mensagem-final">
                 <h2>🎉 Parabéns, meu amor! 🎉</h2>
-                <p id="textoFinal">
 
+                <p id="textoFinal">
 Hoje é o seu aniversário, e eu fico aqui pensando em como é lindo poder celebrar a vida de alguém tão incrível quanto você. Porque não é só mais um ano que chega… é mais um capítulo da sua história, mais um momento onde o mundo ganha só por ter você nele.
 
 E não tem como eu pensar no seu dia sem voltar ao dia 22, quando você entrou na minha vida e, sem fazer esforço, ficou.
@@ -343,7 +348,6 @@ Eu amo você mais do que consigo escrever. 💕
 
         let coracoesClicados = 0;
 
-        // Slideshow
         function iniciarSlideshow() {
             const slides = document.querySelectorAll('.slide');
             let slideAtual = 0;
@@ -352,10 +356,9 @@ Eu amo você mais do que consigo escrever. 💕
                 slides[slideAtual].classList.remove('active');
                 slideAtual = (slideAtual + 1) % slides.length;
                 slides[slideAtual].classList.add('active');
-            }, 2500); // mais rápido
+            }, 2500);
         }
 
-        // Ir para os corações
         function irParaCoracoes() {
             document.getElementById('secaoCarta').classList.remove('ativa');
             document.getElementById('secaoCoracoes').classList.add('ativa');
